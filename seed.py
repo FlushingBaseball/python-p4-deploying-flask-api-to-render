@@ -1,4 +1,6 @@
-from app import appfrom models import db, Bird
+from app import app
+from models import db, Bird
+
 with app.app_context():
     print('Deleting existing birds...')
     Bird.query.delete()
@@ -15,4 +17,4 @@ with app.app_context():
     print('Committing transaction...')
     db.session.commit()
 
-    print('Complete.')pip
+    print('Complete.')

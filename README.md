@@ -195,6 +195,7 @@ root directory:
 
 ```console
 $ export DATABASE_URI=<External Database URL goes here>
+$ export DATABASE_URI=postgresql://picard:QY0HpjD93Lc93nHfo5D4s5vovKZNLrsL@dpg-ckdii65jhfbs73em7cpg-a.oregon-postgres.render.com/armchairdata
 ```
 
 Now we're ready to start building our app.
@@ -206,31 +207,6 @@ Let's set up our app, models, and migrations to get things started:
 ```py
 # app.py
 
-import os
-
-from flask import Flask, jsonify, make_response
-from flask_migrate import Migrate
-from flask_restful import Api, Resource
-
-from models import db, Bird
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URI')
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.json.compact = False
-
-migrate = Migrate(app, db)
-db.init_app(app)
-
-api = Api(app)
-
-class Birds(Resource):
-
-    def get(self):
-        birds = [bird.to_dict() for bird in Bird.query.all()]
-        return make_response(jsonify(birds), 200)
-
-api.add_resource(Birds, '/birds')
 
 ```
 
