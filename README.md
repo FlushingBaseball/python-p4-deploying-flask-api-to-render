@@ -6,7 +6,7 @@
 - Deploy a basic Flask application to Render.
 
 ***
-
+ 
 ## Key Vocab
 
 - **Deployment**: the processes that make an application available for its
